@@ -1,0 +1,42 @@
+﻿@model WebBanHang.Context.Brand
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xóa nhãn hàng</h2>
+<p>@ViewBag.error</p>
+<h3>Bạn muốn xóa nhãn hàng này ?</h3>
+<div>
+    <h4>Brand</h4>
+    <hr />
+  <table class="table table-bordered">
+      <tr>
+          <th>
+              Name
+          </th>
+          <th>
+              Hình đại diện
+          </th>
+      </tr>
+      <tr>
+          <td>
+              @Model.Name
+          </td>
+          <td>
+              <img src="@Url.Content("~/Content/images/items/" + Model.Avatar)" width="100" />
+          </td>
+      </tr>
+  </table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Trở về", "Index")
+        </div>
+    }
+</div>

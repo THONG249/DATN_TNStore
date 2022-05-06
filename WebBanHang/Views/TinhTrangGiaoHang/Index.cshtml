@@ -1,0 +1,25 @@
+﻿@model List<WebBanHang.Context.Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tình trạng giao hàng</h2>
+<p>  @ViewBag.Tb</p>
+@foreach (var item in Model)
+{
+
+    if (item.NgayGiaHang != null)
+    {
+
+        <p>Đơn hàng |  @item.Name | đặt vào ngày | @item.CreatedOnUtc của bạn sẽ được giao vào ngày @item.NgayGiaHang</p>
+    }
+    else
+    {
+        <p>
+            Sản phẩm của đơn hàng @item.Name
+            chưa được xác nhận
+        </p>
+    }
+}
+

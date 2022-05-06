@@ -1,0 +1,70 @@
+﻿@*@model WebBanHang.Context.Order*@
+@model WebBanHang.Models.CTDONHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết đơn hàng </h2>
+<table class="table" border="1">
+    <tr>
+        <th>
+            Tên đơn hàng
+        </th>
+        <th>
+            Người đặt hàng
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Ngày đặt hàng
+        </th>
+        <th>
+            Ngày giao hàng
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Model.Order.Name
+        </td>
+        @foreach (var item in Model.User)
+        {
+            <td>
+
+                @item.FirstName
+                @item.LastName
+            </td>
+            <td>
+                @item.DiaChi
+            </td>
+            <td>
+                @item.Phone
+            </td>
+        }
+        <td>
+            @foreach (var item in Model.ListOderDetail)
+            {
+                @item.Quantity
+            }
+        </td>
+        <td>
+            @Model.Order.CreatedOnUtc
+        </td>
+        <td>
+            @Model.Order.NgayGiaHang
+        </td>
+
+    </tr>
+</table>
+@foreach(var item in ViewBag.Name)
+            {
+                @item
+            }

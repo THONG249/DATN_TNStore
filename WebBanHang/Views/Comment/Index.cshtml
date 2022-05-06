@@ -1,0 +1,44 @@
+﻿@model WebBanHang.Context.Comment
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<h2>Gửi phản hồi của bạn</h2>
+
+@using (Html.BeginForm("Index", "Comment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+     
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.UserComment, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        @Session["Email"]
+        @*<div class="col-md-10">
+            @Html.EditorFor(model => model.UserComment, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserComment, "", new { @class = "text-danger" })
+            @ViewBag.Cmt
+        </div>*@
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.UserComment, new { htmlAttribute = new { @class = "form-control", @id = "UserComment" } })
+            <script type="text/javascript" lang="javascrip">
+                CKEDITOR.replace("UserComment")
+            </script>
+            @Html.ValidationMessageFor(model => model.UserComment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gửi" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+   <a href="@Url.Action("Index", "Home")">Quay Lại</a>
+</div>
